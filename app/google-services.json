@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "505087883661",
+    "firebase_url": "https://chatly-852c1.firebaseio.com",
+    "project_id": "chatly-852c1",
+    "storage_bucket": "chatly-852c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505087883661:android:b844a12ea59390d6de25c4",
+        "android_client_info": {
+          "package_name": "com.codeblac.chatly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505087883661-5kn82tfuhp34ga4mq5j7t11tdt9r3t0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codeblac.chatly",
+            "certificate_hash": "11bcee4cb60bb46609efbacece52461a1e365b49"
+          }
+        },
+        {
+          "client_id": "505087883661-aoqilinc7tildfh2675d8eqspi4b91kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codeblac.chatly",
+            "certificate_hash": "043f53cac21e48defdf6e1f24ab3ea46000ec752"
+          }
+        },
+        {
+          "client_id": "505087883661-s5f1v7vnpi83hsu4r41n90f29nindoae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3OKw-h5EHnsLuVy-1Iq2QRJOXods7CCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505087883661-s5f1v7vnpi83hsu4r41n90f29nindoae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
