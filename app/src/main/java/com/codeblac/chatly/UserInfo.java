@@ -4,6 +4,35 @@ public class UserInfo {
     private String Full_Name;
     private String Bio;
     private String Uid;
+    private String imageUrl;
+
+    public UserInfo(String full_Name, String bio, String uid, String imageUrl) {
+        Full_Name = full_Name;
+        Bio = bio;
+        Uid = uid;
+        this.imageUrl = imageUrl;
+    }
+
+    public UserInfo() {
+    }
+
+    public UserInfo(UserInfo uf){
+        this.Bio=uf.Bio;
+        this.Uid=uf.Bio;
+        this.Full_Name=uf.Full_Name;
+        this.imageUrl=uf.imageUrl ;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+
+
 
     public String getUid() {
         return Uid;

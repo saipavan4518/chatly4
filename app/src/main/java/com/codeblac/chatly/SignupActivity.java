@@ -3,6 +3,7 @@ package com.codeblac.chatly;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +40,12 @@ public class SignupActivity extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         muser = mauth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+
+        Toolbar t=findViewById(R.id.toolbar);
+        setSupportActionBar(t);
+        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         u_email = findViewById(R.id.signup_email);
         u_pass = findViewById(R.id.signup_pass);
@@ -92,6 +100,18 @@ public class SignupActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+              Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return true;
+        }
+        return false;
     }
 
     protected void onStart(){

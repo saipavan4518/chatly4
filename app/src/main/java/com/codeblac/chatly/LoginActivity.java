@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +30,11 @@ public class LoginActivity extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         muser = mauth.getCurrentUser();
 
+        Toolbar t=findViewById(R.id.toolbar);
+        setSupportActionBar(t);
+        getSupportActionBar().setTitle("Login");
+
+
         u_name = findViewById(R.id.login_username);
         u_pass = findViewById(R.id.login_password);
 
@@ -47,19 +53,24 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user_name = u_name.getText().toString();
                 String user_pass = u_pass.getText().toString();
-                mauth.signInWithEmailAndPassword(user_name,user_pass)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(getApplicationContext(),"Sign in Successful",Toast.LENGTH_SHORT).show();
-                                    Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(mainIntent);
-                                }else{
-                                    Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_SHORT).show();
+                if(user_name.equals("") || user_pass.equals("")){
+                    Toast.makeText(LoginActivity.this,"Enter the Fields",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mauth.signInWithEmailAndPassword(user_name, user_pass)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
+                                        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(mainIntent);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
     }
