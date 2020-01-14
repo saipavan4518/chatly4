@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codeblac.chatly.Chat;
 import com.codeblac.chatly.MessageActivity;
 import com.codeblac.chatly.R;
@@ -55,7 +56,11 @@ public class MessageAdapter   extends RecyclerView.Adapter<MessageAdapter.ViewHo
 
         Chat chat=mchat.get(position);
         holder.show_message.setText(chat.getMessage());
-        holder.profile_image.setImageResource(R.drawable.contact);
+        if(imageurl.equals("default")){
+            holder.profile_image.setImageResource(R.drawable.contact);
+        }else{
+            Glide.with(mc).load(imageurl).into(holder.profile_image);
+        }
 
     }
 

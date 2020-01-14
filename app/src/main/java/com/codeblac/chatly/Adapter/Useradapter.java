@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codeblac.chatly.MessageActivity;
 import com.codeblac.chatly.R;
 import com.codeblac.chatly.UserInfo;
@@ -43,8 +44,12 @@ public class Useradapter extends RecyclerView.Adapter<Useradapter.ViewHolder> {
             holder.username.setText("dulle");
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }
-        holder.username.setText(String.valueOf(user.getUid()));
-        holder.profile_image.setImageResource(R.mipmap.ic_launcher);
+        holder.username.setText(user.getFull_Name());
+        if(String.valueOf(user.getImageUrl()).equals("default")){
+            holder.profile_image.setImageResource(R.drawable.contact);
+        }else{
+            Glide.with(mc).load(user.getImageUrl()).into(holder.profile_image);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

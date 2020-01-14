@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codeblac.chatly.Adapter.MessageAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -105,7 +106,11 @@ public class MessageActivity extends AppCompatActivity {
                     UserInfo ui=ds.getValue(UserInfo.class);
                     if(String.valueOf(ui.getUid()).equals(userid)){
                         username.setText(ui.getFull_Name());
-                        profile_image.setImageResource(R.drawable.contact);
+                        if(String.valueOf(ui.getImageUrl()).equals("default")){
+                            profile_image.setImageResource(R.drawable.contact);
+                        }else{
+                            Glide.with(MessageActivity.this).load(ui.getImageUrl()).into(profile_image);
+                        }
                         Log.d(TAG,"This is the recieverMain:"+ui.getUid());
                         Log.d(TAG,"This is the Sender:"+fbu.getEmail());
                         readMessages(fbu.getEmail(),ui.getUid(),ui.getImageUrl());

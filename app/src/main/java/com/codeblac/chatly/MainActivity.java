@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.codeblac.chatly.Fragments.ProfileFragment;
 import com.codeblac.chatly.Fragments.UsersFragment;
 import com.codeblac.chatly.Fragments.chatsFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         vpa.addFragment(new chatsFragment(),"Chats");
         vpa.addFragment(new UsersFragment(),"Users");
+        vpa.addFragment(new ProfileFragment(),"Profile");
 
         vp.setAdapter(vpa);
 

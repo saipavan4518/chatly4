@@ -38,7 +38,6 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         mauth = FirebaseAuth.getInstance();
-        muser = mauth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
 
         Toolbar t=findViewById(R.id.toolbar);
@@ -83,12 +82,15 @@ public class SignupActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    muser = FirebaseAuth.getInstance().getCurrentUser();
+                        String idid=muser.getUid();
                         if(task.isSuccessful()){
                             userInfo = new UserInfo();
                             userInfo.setFull_Name(user_name);
                             userInfo.setBio("Hello");
                             userInfo.setUid(user_email);
-                            mDatabase.push().setValue(userInfo);
+                            userInfo.setImageUrl("default");
+                            mDatabase.child(idid).setValue(userInfo);
                             sendToLogin();
                             Toast.makeText(getApplicationContext(), "Successful",
                                     Toast.LENGTH_SHORT).show();

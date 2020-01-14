@@ -59,12 +59,9 @@ public class UsersFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mu.clear();
                 for(DataSnapshot sp:dataSnapshot.getChildren()){
-
                         UserInfo ui=sp.getValue(UserInfo.class);
-                        if(!(ui.getUid().equals(fbu.getUid())))
+                        if(!(String.valueOf(ui.getUid()).equals(fbu.getEmail())))
                             mu.add(ui);
-
-
                 }
                 ua =new Useradapter(getContext(),mu);
                 rv.setAdapter(ua);
