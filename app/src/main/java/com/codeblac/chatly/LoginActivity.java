@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser muser;
     private Button signup,login;
     private TextView u_name,u_pass;
+    private TextView forgot_pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,17 @@ public class LoginActivity extends AppCompatActivity {
 
         u_name = findViewById(R.id.login_username);
         u_pass = findViewById(R.id.login_password);
-
+        forgot_pass = findViewById(R.id.forget_pass);
         signup = findViewById(R.id.register_page);
+
+        forgot_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,ForgotPassActivity.class));
+            }
+        });
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

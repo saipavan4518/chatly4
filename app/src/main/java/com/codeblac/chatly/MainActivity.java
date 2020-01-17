@@ -35,6 +35,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
                             userInfo = childDSS.getValue(UserInfo.class);
                         }
                         username.setText(userInfo.getFull_Name());
-                        //if(userInfo.getImageUrl().equals("default")){
+                        if(userInfo.getImageUrl().equals("default")){
                            profilepic.setImageResource(R.drawable.contact);
-                        //}else{
-                            //Glide.with(MainActivity.this).load(userInfo.getImageUrl()).into(profilepic);
-                        //}
+                        }else{
+                            Glide.with(getApplicationContext()).load(userInfo.getImageUrl()).into(profilepic);
+                        }
 
                         Toast.makeText(getApplicationContext(),userInfo.getFull_Name()+" "+ userInfo.getUid(),Toast.LENGTH_SHORT).show();
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                startActivity(new Intent(MainActivity.this,LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 return true;
         }
         return false;
@@ -166,5 +167,26 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return titles.get(position);
         }
+    }
+
+    private void status(String status){
+        mDatabase = FirebaseDatabase.getInstance().getReference("users").child(muser.getUid());
+
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("status",status);
+
+        mDatabase.updateChildren(map);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
     }
 }

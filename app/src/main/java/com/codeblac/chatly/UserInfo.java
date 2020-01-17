@@ -5,22 +5,29 @@ public class UserInfo {
     private String Bio;
     private String Uid;
     private String imageUrl;
+    private String status;
 
-    public UserInfo(String full_Name, String bio, String uid, String imageUrl) {
+
+
+
+
+    public UserInfo(String full_Name, String bio, String uid, String imageUrl,String status) {
         Full_Name = full_Name;
         Bio = bio;
         Uid = uid;
         this.imageUrl = imageUrl;
+        this.status=status;
     }
 
     public UserInfo() {
     }
 
-    public UserInfo(UserInfo uf){
-        this.Bio=uf.Bio;
-        this.Uid=uf.Bio;
-        this.Full_Name=uf.Full_Name;
-        this.imageUrl=uf.imageUrl ;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getImageUrl() {

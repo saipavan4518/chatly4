@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -105,19 +106,19 @@ public class chatsFragment extends Fragment {
                                     UserInfo ufo=itr.next();
                                     if(!ui.getUid().equals(ufo.getUid())){
                                         Log.d(TAG,"User:"+ui.getUid());
-                                        if(!lu.contains(ui))
-                                            lu.add(ui);
+                                        insertCHats(lu,ui);
                                     }
                                 }
                             }else{
                                 Log.d(TAG,"UseR:"+ui.getUid());
                                 if(!lu.contains(ui))
-                                    lu.add(ui);
+                                    insertCHats(lu,ui);
                             }
                         }
                     }
                 }
-                useradapter = new Useradapter(getContext(),lu);
+                Log.d(TAG,"the list is"+ Arrays.toString(lu.toArray()));
+                useradapter = new Useradapter(getContext(),lu,true);
                 recyclerView.setAdapter(useradapter);
             }
 
@@ -127,5 +128,16 @@ public class chatsFragment extends Fragment {
             }
         });
 
+    }
+    private void insertCHats(List<UserInfo> userInfos,UserInfo userInfo){
+        boolean inc=true;
+        for(UserInfo ui:userInfos){
+            if(ui.getUid().equals(userInfo.getUid())){
+                inc=false;
+            }
+        }
+        if(inc){
+            userInfos.add(userInfo);
+        }
     }
 }

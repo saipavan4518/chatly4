@@ -75,6 +75,9 @@ public class ProfileFragment extends Fragment {
         dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     UserInfo ui=ds.getValue(UserInfo.class);
                     if(String.valueOf(ui.getUid()).equals(fbu.getEmail())){

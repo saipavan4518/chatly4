@@ -61,7 +61,15 @@ public class MessageAdapter   extends RecyclerView.Adapter<MessageAdapter.ViewHo
         }else{
             Glide.with(mc).load(imageurl).into(holder.profile_image);
         }
-
+        if(position == mchat.size()-1){
+            if(chat.isIsseen()){
+                holder.text_seen.setText("seen");
+            }else{
+                holder.text_seen.setText("Delivered");
+            }
+        }else{
+            holder.text_seen.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -74,11 +82,14 @@ public class MessageAdapter   extends RecyclerView.Adapter<MessageAdapter.ViewHo
         public TextView show_message;
         public ImageView profile_image;
 
+        public TextView text_seen;
+
         public ViewHolder(View iv){
             super(iv);
 
             show_message=iv.findViewById(R.id.show_message);
             profile_image=iv.findViewById(R.id.profile_pic);
+            text_seen=iv.findViewById(R.id.text_seen);
 
 
         }

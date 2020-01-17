@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.codeblac.chatly">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".ForgotPassActivity" android:parentActivityName=".LoginActivity">
+        </activity>
+        <activity android:name=".MessageActivity" />
         <activity android:name=".startpage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +26,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="MainActivty"></activity>
+            android:label="MainActivty" />
         <activity
             android:name=".LoginActivity"
-            android:label="Login"></activity>
+            android:label="Login" />
         <activity
             android:name=".SignupActivity"
-            android:label="Register"></activity>
+            android:label="Register" />
     </application>
 
 </manifest>

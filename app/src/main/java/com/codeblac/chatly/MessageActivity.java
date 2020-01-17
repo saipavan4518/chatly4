@@ -36,7 +36,7 @@ public class MessageActivity extends AppCompatActivity {
     TextView username;
 
     FirebaseUser fbu;
-    DatabaseReference dbr,fbrr;
+    DatabaseReference dbr;
 
     Intent i;
 
@@ -47,6 +47,9 @@ public class MessageActivity extends AppCompatActivity {
 
     ImageButton btn_send;
     EditText text_send;
+
+    ValueEventListener seenListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +64,7 @@ public class MessageActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(MessageActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
 
@@ -109,7 +112,7 @@ public class MessageActivity extends AppCompatActivity {
                         if(String.valueOf(ui.getImageUrl()).equals("default")){
                             profile_image.setImageResource(R.drawable.contact);
                         }else{
-                            Glide.with(MessageActivity.this).load(ui.getImageUrl()).into(profile_image);
+                            Glide.with(getApplicationContext()).load(ui.getImageUrl()).into(profile_image);
                         }
                         Log.d(TAG,"This is the recieverMain:"+ui.getUid());
                         Log.d(TAG,"This is the Sender:"+fbu.getEmail());
@@ -123,6 +126,31 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+
+        seenMessage(userid);
+    }
+
+    private void seenMessage(final String userid){
+        dbr = FirebaseDatabase.getInstance().getReference().child("Chats");
+        seenListener = dbr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    Chat c=ds.getValue(Chat.class);
+                    if(c.getReceiver().equals(fbu.getEmail()) && c.getSender().equals(userid)){
+                        HashMap<String,Object> map = new HashMap<>();
+                        map.put("isseen",true);
+                        ds.getRef().updateChildren(map);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void sendMessage(String sender,String rec,String message){
@@ -135,6 +163,7 @@ public class MessageActivity extends AppCompatActivity {
         map.put("sender",sender);
         map.put("receiver",rec);
         map.put("message",message);
+        map.put("isseen",false);
 
         dr.child("Chats").push().setValue(map);
 
@@ -170,5 +199,26 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void status(String status){
+        dbr = FirebaseDatabase.getInstance().getReference("users").child(fbu.getUid());
+
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("status",status);
+
+        dbr.updateChildren(map);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dbr.removeEventListener(seenListener);
+        status("offline");
     }
 }
