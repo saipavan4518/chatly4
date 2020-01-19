@@ -48,7 +48,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class ProfileFragment extends Fragment {
 
     CircleImageView image_profile;
-    TextView username;
+    TextView username,display_username,display_email;
 
     DatabaseReference dbr;
     FirebaseUser fbu;
@@ -66,6 +66,8 @@ public class ProfileFragment extends Fragment {
 
         image_profile=v.findViewById(R.id.profile_pic);
         username=v.findViewById(R.id.username);
+        display_email=v.findViewById(R.id.display_email);
+        display_username=v.findViewById(R.id.display_username);
 
         storageReference= FirebaseStorage.getInstance().getReference(("uploads"));
 
@@ -82,6 +84,8 @@ public class ProfileFragment extends Fragment {
                     UserInfo ui=ds.getValue(UserInfo.class);
                     if(String.valueOf(ui.getUid()).equals(fbu.getEmail())){
                         username.setText(ui.getFull_Name());
+                        display_username.setText(ui.getFull_Name());
+                        display_email.setText(ui.getUid());
                         if(String.valueOf(ui.getImageUrl()).equals("default")){
                             image_profile.setImageResource(R.drawable.contact);
                         }else{

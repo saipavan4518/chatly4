@@ -53,7 +53,7 @@ public class Useradapter extends RecyclerView.Adapter<Useradapter.ViewHolder> {
         final UserInfo user=mu.get(position);
         if(user==null){
             holder.username.setText("dulle");
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher);
+            holder.profile_image.setImageResource(R.mipmap.ic_launcher_icon);
         }
         holder.username.setText(user.getFull_Name());
         if(String.valueOf(user.getImageUrl()).equals("default")){

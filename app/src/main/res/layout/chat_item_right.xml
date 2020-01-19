@@ -23,11 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-
+            android:paddingLeft="5dp"
             android:background="@drawable/background_right"
             android:id="@+id/show_message"
             android:textSize="18sp"
             android:text="hello"
+            android:textColor="@color/white"
             android:padding="8dp"
             />
 

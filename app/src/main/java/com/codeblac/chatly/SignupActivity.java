@@ -23,8 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private Button login,sign_up;
-    private TextView u_email, u_pass,u_cnfpass,u_name;
+    private Button sign_up;
+    private TextView u_email, u_pass,u_cnfpass,u_name,already_login;
 
     private FirebaseAuth mauth;
     private FirebaseUser muser;
@@ -51,8 +51,8 @@ public class SignupActivity extends AppCompatActivity {
         u_cnfpass = findViewById(R.id.signup_cnfpass);
         u_name = findViewById(R.id.signup_name);
 
-        login = findViewById(R.id.login_page);
-        login.setOnClickListener(new View.OnClickListener() {
+        already_login = findViewById(R.id.already_login);
+        already_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     sendToLogin();

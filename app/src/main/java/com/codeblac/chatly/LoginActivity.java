@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +23,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mauth;
     private FirebaseUser muser;
-    private Button signup,login;
-    private TextView u_name,u_pass;
-    private TextView forgot_pass;
+    private Button login;
+    private EditText u_name,u_pass;
+    private TextView forgot_pass,signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         muser = mauth.getCurrentUser();
 
-        Toolbar t=findViewById(R.id.toolbar);
-        setSupportActionBar(t);
-        getSupportActionBar().setTitle("Login");
 
 
         u_name = findViewById(R.id.login_username);
@@ -58,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         login = findViewById(R.id.login_loginactivity);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\mvsp\\AndroidStudioProjects\\key\\key.jks')
+            storePassword 'pavan&vijay'
+            keyAlias = 'key0'
+            keyPassword 'pavan&vijay'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.codeblac.chatly"

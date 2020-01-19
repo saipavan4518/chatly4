@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/advent_pro</item>
+        <item>@font/arizonia</item>
+        <item>@font/damion</item>
+        <item>@font/mclaren</item>
+        <item>@font/the_girl_next_door</item>
+        <item>@font/ubuntu_light</item>
+        <item>@font/yellowtail</item>
+    </array>
+</resources>

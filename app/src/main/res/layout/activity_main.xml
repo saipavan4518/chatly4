@@ -16,7 +16,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="#FF3F51B5"
         app:popupTheme="@style/MenuStyle">
 
 
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:text="username"
+            android:textSize="18sp"
             android:textColor="#fff"
             android:textStyle="bold" />
 
@@ -40,10 +41,10 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/yellow"
+            android:background="#FF3F51B5"
             app:tabIndicatorColor="@color/alice_blue"
-            app:tabSelectedTextColor="@color/_light_green"
-            app:tabTextColor="@color/red" />
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white_smoke" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -51,6 +52,6 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green"
+        android:background="@color/white"
         app:layout_scrollFlags="scroll|enterAlways"/>
 </LinearLayout>
